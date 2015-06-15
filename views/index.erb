@@ -8,7 +8,7 @@
 
 <ul>
 <% @lists.each() do |list| %>
-<li><%= list.name %><a href="/list<%= list.id() %>/edit">  Update this list's name</a></li>
+<li><a href='/lists/<%= list.id%>'><%= list.name %></a><br><a href="/list<%= list.id() %>/edit">  Update this list's name</a></li>
 <% end %>
 </ul>
 
@@ -21,15 +21,15 @@
   <button type="submit">Add list</button>
 </form>
 
-<select>
-  <% @lists.each() do |list| %>
-  <option name="list_id" value= '<%= list.id() %>'><a href="/lists/<%= list.id() %>"><%= list.name() %></a></option>
-<% end %>
-</select>
-
-<p>Create a new task:</p>
-
 <form action="/tasks" method="post">
+  <select name="list_id" type="text">
+    <% @lists.each() do |list| %>
+      <option value= '<%= list.id() %>'><a href="/lists/<%= list.id() %>"><%= list.name() %></a></option>
+    <% end %>
+  </select>
+
+  <p>Create a new task:</p>
+
   <label for="description">Task Description</label>
   <input id="description" name="description" type="text">
 
