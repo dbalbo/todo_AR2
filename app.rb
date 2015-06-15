@@ -31,7 +31,8 @@ post('/tasks') do
   list_id = params.fetch('list_id')
   @task = Task.create({:description => description, :list_id => list_id})
   @list = List.find(params.fetch('list_id').to_i)
-  erb(:list)
+  erb(:list)# if @task.save (erb success else erb errors) just an example of rerouting
+  #see 'full messages' in active record documentation 
 end
 
 
